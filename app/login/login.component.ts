@@ -44,15 +44,19 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+        if(this.f.username.value=='admin' && this.f.password.value=='admin')
+        {
+        this.router.navigate(['/home']);
+        }
+        // this.authenticationService.login(this.f.username.value, this.f.password.value)
+        //     .pipe(first())
+        //     .subscribe(
+        //         data => {
+        //             this.router.navigate([this.returnUrl]);
+        //         },
+        //         error => {
+        //             this.alertService.error(error);
+        //             this.loading = false;
+        //         });
     }
 }
